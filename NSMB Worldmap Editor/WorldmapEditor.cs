@@ -57,7 +57,7 @@ namespace NSMB_Worldmap_Editor
             openOverlayDialog.InitialDirectory = "::{20D04FE0-3AEA-1069-A2D8-08002B30309D}";
             openOverlayDialog.FileName = "overlay9_8.bin";
             openOverlayDialog.Filter = "Binary Files|*.bin|All Files|*.*";
-            openOverlayDialog.Title = "Save overlay9_8";
+            openOverlayDialog.Title = "Open overlay9_8";
 
 
             DialogResult openOverlayDialogResult = openOverlayDialog.ShowDialog();
