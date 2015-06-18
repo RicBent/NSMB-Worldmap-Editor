@@ -36,7 +36,7 @@ namespace NSMB_Worldmap_Editor
             if (!nodeEditor.Enabled) loadOverlay();
             else
             {
-                DialogResult dialogResult = MessageBox.Show("There are unsaved changes.\nIf you close the editor without saving, you will lose them.\nDo you want to save?", "NSMB Worldmap Editor", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button3);
+                DialogResult dialogResult = MessageBox.Show("There are unsaved changes.\nIf you open another file without saving, you will lose them.\nDo you want to save?", "NSMB Worldmap Editor", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button3);
                 if (dialogResult == DialogResult.Yes)
                 {
                     save(false);
@@ -80,6 +80,9 @@ namespace NSMB_Worldmap_Editor
                     catch { }
 
                     File.Copy(overlayPath, "Backup/overlay9_8.tmp", true);
+                    editor.nodeSelected = false;
+                    nodeEditor.disableEditor();
+                    worldComboBox.SelectedIndex = 0;
                     readOverlay();
                 }
                 catch

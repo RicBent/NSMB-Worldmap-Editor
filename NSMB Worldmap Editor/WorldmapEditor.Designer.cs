@@ -37,17 +37,17 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.worldComboBox = new System.Windows.Forms.ToolStripComboBox();
-            this.Nodes = new System.Windows.Forms.TabPage();
+            this.nodesPage = new System.Windows.Forms.TabPage();
             this.nodeEditor = new NSMB_Worldmap_Editor.Controls.NodeEditor();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.pathEditor1 = new NSMB_Worldmap_Editor.Controls.PathEditor();
+            this.mainTabControl = new System.Windows.Forms.TabControl();
+            this.pathAnimationsPage = new System.Windows.Forms.TabPage();
+            this.pathEditor = new NSMB_Worldmap_Editor.Controls.PathEditor();
             this.editor = new NSMB_Worldmap_Editor.Controls.EditorControl();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
-            this.Nodes.SuspendLayout();
-            this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.nodesPage.SuspendLayout();
+            this.mainTabControl.SuspendLayout();
+            this.pathAnimationsPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -132,16 +132,16 @@
             this.worldComboBox.Size = new System.Drawing.Size(121, 25);
             this.worldComboBox.SelectedIndexChanged += new System.EventHandler(this.worldComboBox_SelectionChangeCommitted);
             // 
-            // Nodes
+            // nodesPage
             // 
-            this.Nodes.Controls.Add(this.nodeEditor);
-            this.Nodes.Location = new System.Drawing.Point(4, 22);
-            this.Nodes.Name = "Nodes";
-            this.Nodes.Padding = new System.Windows.Forms.Padding(3);
-            this.Nodes.Size = new System.Drawing.Size(256, 704);
-            this.Nodes.TabIndex = 0;
-            this.Nodes.Text = "Nodes";
-            this.Nodes.UseVisualStyleBackColor = true;
+            this.nodesPage.Controls.Add(this.nodeEditor);
+            this.nodesPage.Location = new System.Drawing.Point(4, 22);
+            this.nodesPage.Name = "nodesPage";
+            this.nodesPage.Padding = new System.Windows.Forms.Padding(3);
+            this.nodesPage.Size = new System.Drawing.Size(256, 704);
+            this.nodesPage.TabIndex = 0;
+            this.nodesPage.Text = "Nodes";
+            this.nodesPage.UseVisualStyleBackColor = true;
             // 
             // nodeEditor
             // 
@@ -152,34 +152,36 @@
             this.nodeEditor.Size = new System.Drawing.Size(250, 698);
             this.nodeEditor.TabIndex = 0;
             // 
-            // tabControl1
+            // mainTabControl
             // 
-            this.tabControl1.Controls.Add(this.Nodes);
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.tabControl1.Location = new System.Drawing.Point(0, 49);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(264, 730);
-            this.tabControl1.TabIndex = 2;
+            this.mainTabControl.Controls.Add(this.nodesPage);
+            this.mainTabControl.Controls.Add(this.pathAnimationsPage);
+            this.mainTabControl.Dock = System.Windows.Forms.DockStyle.Left;
+            this.mainTabControl.Location = new System.Drawing.Point(0, 49);
+            this.mainTabControl.Name = "mainTabControl";
+            this.mainTabControl.SelectedIndex = 0;
+            this.mainTabControl.Size = new System.Drawing.Size(264, 730);
+            this.mainTabControl.TabIndex = 2;
             // 
-            // tabPage1
+            // pathAnimationsPage
             // 
-            this.tabPage1.Controls.Add(this.pathEditor1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(256, 704);
-            this.tabPage1.TabIndex = 1;
-            this.tabPage1.Text = "Paths";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.pathAnimationsPage.Controls.Add(this.pathEditor);
+            this.pathAnimationsPage.Location = new System.Drawing.Point(4, 22);
+            this.pathAnimationsPage.Name = "pathAnimationsPage";
+            this.pathAnimationsPage.Size = new System.Drawing.Size(256, 704);
+            this.pathAnimationsPage.TabIndex = 1;
+            this.pathAnimationsPage.Text = "Paths Animations";
+            this.pathAnimationsPage.UseVisualStyleBackColor = true;
             // 
-            // pathEditor1
+            // pathEditor
             // 
-            this.pathEditor1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pathEditor1.Location = new System.Drawing.Point(0, 0);
-            this.pathEditor1.Name = "pathEditor1";
-            this.pathEditor1.Size = new System.Drawing.Size(256, 704);
-            this.pathEditor1.TabIndex = 0;
+            this.pathEditor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pathEditor.Enabled = false;
+            this.pathEditor.Location = new System.Drawing.Point(0, 0);
+            this.pathEditor.Name = "pathEditor";
+            this.pathEditor.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.pathEditor.Size = new System.Drawing.Size(256, 704);
+            this.pathEditor.TabIndex = 0;
             // 
             // editor
             // 
@@ -195,7 +197,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1247, 779);
             this.Controls.Add(this.editor);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.mainTabControl);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -207,9 +209,9 @@
             this.menuStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            this.Nodes.ResumeLayout(false);
-            this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
+            this.nodesPage.ResumeLayout(false);
+            this.mainTabControl.ResumeLayout(false);
+            this.pathAnimationsPage.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -221,13 +223,13 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private Controls.EditorControl editor;
-        private System.Windows.Forms.TabPage Nodes;
+        private System.Windows.Forms.TabPage nodesPage;
         private Controls.NodeEditor nodeEditor;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl mainTabControl;
         private System.Windows.Forms.ToolStripComboBox worldComboBox;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
-        private System.Windows.Forms.TabPage tabPage1;
-        private Controls.PathEditor pathEditor1;
+        private System.Windows.Forms.TabPage pathAnimationsPage;
+        private Controls.PathEditor pathEditor;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
