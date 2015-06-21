@@ -136,7 +136,6 @@
             // modeComboBox
             // 
             this.modeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.modeComboBox.Enabled = false;
             this.modeComboBox.FormattingEnabled = true;
             this.modeComboBox.Items.AddRange(new object[] {
             "X Changes",
@@ -393,7 +392,6 @@
             0,
             -2147483648});
             this.numericUpDownIX.Name = "numericUpDownIX";
-            this.numericUpDownIX.ReadOnly = true;
             this.numericUpDownIX.Size = new System.Drawing.Size(172, 20);
             this.numericUpDownIX.TabIndex = 5;
             // 
