@@ -20,6 +20,9 @@ namespace NSMB_Worldmap_Editor.Controls
 
         public List<visibleNode> visibleNodeList;
         Bitmap nodeImg = ResizeBitmap(Properties.Resources.NormalNode, 36, 36);
+
+        public List<Point> frameList;
+        public int highlightedFrame;
     
         public EditorControl()
         {
@@ -39,6 +42,11 @@ namespace NSMB_Worldmap_Editor.Controls
                 drawGrid(e);
                 drawNodes(e);
                 drawSelection(e);
+            }
+
+            if (frameList != null)
+            {
+                drawFrames(e);
             }
         }
 
@@ -84,6 +92,17 @@ namespace NSMB_Worldmap_Editor.Controls
             if (nodeSelected == true)
             {
                 e.Graphics.DrawRectangle(Pens.Red, visibleNodeList[selectedNode].posX + areaWidth / 2 - nodeImg.Size.Width / 2, visibleNodeList[selectedNode].posY + areaHeight / 2 - nodeImg.Size.Height / 2, nodeImg.Size.Width, nodeImg.Size.Height);
+            }
+        }
+
+        private void drawFrames(PaintEventArgs e)
+        {
+            e.Graphics.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+
+            foreach (Point p in frameList)
+            {
+                if (highlightedFrame == frameList.IndexOf(p)) e.Graphics.FillEllipse(Brushes.Red, p.X + areaWidth / 2 - 3, p.Y + areaHeight / 2 - 3, 6, 6);
+                else e.Graphics.FillEllipse(Brushes.Blue, p.X + areaWidth / 2 - 3, p.Y + areaHeight / 2 - 3, 6, 6);
             }
         }
 

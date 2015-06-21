@@ -29,6 +29,7 @@ namespace NSMB_Worldmap_Editor
 
             nodeEditor.ec = editor;
             editor.ne = nodeEditor;
+            pathEditor.ec = editor;
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
