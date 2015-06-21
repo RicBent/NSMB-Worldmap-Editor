@@ -136,15 +136,19 @@
             // modeComboBox
             // 
             this.modeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.modeComboBox.Enabled = false;
             this.modeComboBox.FormattingEnabled = true;
             this.modeComboBox.Items.AddRange(new object[] {
-            "X-Position Changes",
-            "Y-Position Changes",
-            "X-/Y-Position Changes",
-            "X-/Z-Position Changes",
-            "Y-/Z-Position Changes",
-            "X-/Y-/Z-Position Changes",
-            "Entering Castle/Tower"});
+            "X Changes",
+            "Y Changes",
+            "X/Y Changes",
+            "X/Z Changes",
+            "Y/Z-Changes",
+            "X/Y/ZChanges",
+            "Y Changes (No Direction)",
+            "X/Y Changes (No Direction)",
+            "Y/Z Changes (No Direction)",
+            "X/Y/Z Changes (No Direction)"});
             this.modeComboBox.Location = new System.Drawing.Point(61, 80);
             this.modeComboBox.Name = "modeComboBox";
             this.modeComboBox.Size = new System.Drawing.Size(186, 21);
@@ -207,10 +211,15 @@
             // 
             this.numericUpDownPZ.Location = new System.Drawing.Point(66, 71);
             this.numericUpDownPZ.Maximum = new decimal(new int[] {
-            1000000,
+            10000,
             0,
             0,
             0});
+            this.numericUpDownPZ.Minimum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            -2147483648});
             this.numericUpDownPZ.Name = "numericUpDownPZ";
             this.numericUpDownPZ.Size = new System.Drawing.Size(172, 20);
             this.numericUpDownPZ.TabIndex = 5;
@@ -223,6 +232,11 @@
             0,
             0,
             0});
+            this.numericUpDownPD.Minimum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            -2147483648});
             this.numericUpDownPD.Name = "numericUpDownPD";
             this.numericUpDownPD.Size = new System.Drawing.Size(172, 20);
             this.numericUpDownPD.TabIndex = 5;
@@ -318,12 +332,12 @@
             // 
             this.numericUpDownID.Location = new System.Drawing.Point(66, 97);
             this.numericUpDownID.Maximum = new decimal(new int[] {
-            200000,
+            1000000,
             0,
             0,
             0});
             this.numericUpDownID.Minimum = new decimal(new int[] {
-            200000,
+            1000000,
             0,
             0,
             -2147483648});
@@ -379,6 +393,7 @@
             0,
             -2147483648});
             this.numericUpDownIX.Name = "numericUpDownIX";
+            this.numericUpDownIX.ReadOnly = true;
             this.numericUpDownIX.Size = new System.Drawing.Size(172, 20);
             this.numericUpDownIX.TabIndex = 5;
             // 

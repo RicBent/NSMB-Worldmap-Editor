@@ -265,8 +265,7 @@ namespace NSMB_Worldmap_Editor
                 editor.ScrollEditorMiddle();
                 nodeEditor.nodeChanged(0, false);
                 oldWorldIndex = worldComboBox.SelectedIndex;
-            }
-            
+            }            
         }
 
         private void updateMenu(bool load)

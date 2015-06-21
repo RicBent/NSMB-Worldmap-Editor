@@ -81,6 +81,7 @@
       <DependentUpon>PathEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="dataNode.cs" />
+    <Compile Include="frame.cs" />
     <Compile Include="pathAnimation.cs" />
     <Compile Include="visibleNode.cs" />
     <Compile Include="WorldmapEditor.cs">

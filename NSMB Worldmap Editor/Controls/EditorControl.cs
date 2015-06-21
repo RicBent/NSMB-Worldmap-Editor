@@ -21,7 +21,7 @@ namespace NSMB_Worldmap_Editor.Controls
         public List<visibleNode> visibleNodeList;
         Bitmap nodeImg = ResizeBitmap(Properties.Resources.NormalNode, 36, 36);
 
-        public List<Point> frameList;
+        public List<frame> frameList;
         public int highlightedFrame;
     
         public EditorControl()
@@ -99,11 +99,11 @@ namespace NSMB_Worldmap_Editor.Controls
         {
             e.Graphics.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
 
-            foreach (Point p in frameList)
+            foreach (frame f in frameList)
             {
-                if (highlightedFrame == frameList.IndexOf(p)) e.Graphics.FillEllipse(Brushes.Red, p.X + areaWidth / 2 - 3, p.Y + areaHeight / 2 - 3, 6, 6);
-                else e.Graphics.FillEllipse(Brushes.Blue, p.X + areaWidth / 2 - 3, p.Y + areaHeight / 2 - 3, 6, 6);
+                if (highlightedFrame != frameList.IndexOf(f)) e.Graphics.FillEllipse(Brushes.Blue, f.x + areaWidth / 2 - 3, f.y + areaHeight / 2 - 3, 6, 6);
             }
+            e.Graphics.FillEllipse(Brushes.Red, frameList[highlightedFrame].x + areaWidth / 2 - 3, frameList[highlightedFrame].y + areaHeight / 2 - 3, 6, 6);
         }
 
         public void redraw()
