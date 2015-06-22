@@ -19,8 +19,14 @@ namespace NSMB_Worldmap_Editor.Controls
 
         private List<pathAnimation> pathAnimations;
         private List<frame> frameList;
+        private List<Byte> nsbcaFile;
+
         private int numberOfPaths;
         private int jacOffset;
+
+        private int selectedPath, selectedFrame;
+
+        private bool frameChangesAccepted = true;
 
         public PathEditor()
         {
@@ -30,6 +36,7 @@ namespace NSMB_Worldmap_Editor.Controls
         private void openNsbcaButton_Click(object sender, EventArgs e)
         {
             loadNsbca();
+            saveNsbcaButton.Enabled = true;
         }
 
         private void loadNsbca()
@@ -48,6 +55,7 @@ namespace NSMB_Worldmap_Editor.Controls
             {
                 try
                 {
+                    File.Copy(nsbcaPath, "Backup/animationData.temp", true);
                     //readNsbca();
                 }
                 catch
@@ -60,9 +68,9 @@ namespace NSMB_Worldmap_Editor.Controls
 
         private void readNsbca()
         {
-            List<Byte> nsbcaFile = new List<Byte>(File.ReadAllBytes(nsbcaPath));
+            // = new List<Byte>(File.ReadAllBytes(nsbcaPath));
             pathAnimations = new List<pathAnimation>();
-            BinaryReader br = new BinaryReader(File.Open(nsbcaPath, FileMode.Open));
+            BinaryReader br = new BinaryReader(File.Open("Backup/animationData.temp", FileMode.Open));
 
             br.BaseStream.Position = 29;
             numberOfPaths = br.ReadByte();
@@ -214,29 +222,52 @@ namespace NSMB_Worldmap_Editor.Controls
             return (int)temp;
         }
 
+        private byte[] calcBackPosition(int value)
+        {
+            byte[] temp = new byte[4];
+            Int16 bigValue;
+            UInt16 smallValue;
+
+            bigValue = Convert.ToInt16(value / 16);
+            if (((value - bigValue * 16) * UInt16.MaxValue / 16) < 0) bigValue--;
+
+            //MessageBox.Show(value + " " + bigValue.ToString() + " " + ((value - bigValue * 16) * UInt16.MaxValue / 16).ToString());
+            smallValue = Convert.ToUInt16((value - bigValue * 16) * UInt16.MaxValue / 16);            
+
+            Array.Copy(BitConverter.GetBytes(smallValue), temp, 2);
+            Array.Copy(BitConverter.GetBytes(bigValue), 0, temp, 2, 2);
+
+            return temp;
+        }
+
         private void numericUpDownSelectedPath_ValueChanged(object sender, EventArgs e)
         {
-            numericUpDownFrames.Value = pathAnimations[(int)numericUpDownSelectedPath.Value - 1].fr;
-            flagLabel.Text = "Flag: " + pathAnimations[(int)numericUpDownSelectedPath.Value - 1].fl;
-            numericUpDownIX.Value = pathAnimations[(int)numericUpDownSelectedPath.Value - 1].iX;
-            numericUpDownIY.Value = pathAnimations[(int)numericUpDownSelectedPath.Value - 1].iY;
-            numericUpDownIZ.Value = pathAnimations[(int)numericUpDownSelectedPath.Value - 1].iZ;
-            numericUpDownID.Value = pathAnimations[(int)numericUpDownSelectedPath.Value - 1].iD;
+            writeFrameList(pathAnimations[selectedPath]);
+            selectedPath = (int)numericUpDownSelectedPath.Value - 1;
+            numericUpDownFrames.Value = pathAnimations[selectedPath].fr;
+            flagLabel.Text = "Flag: " + pathAnimations[selectedPath].fl;
+            numericUpDownIX.Value = pathAnimations[selectedPath].iX;
+            numericUpDownIY.Value = pathAnimations[selectedPath].iY;
+            numericUpDownIZ.Value = pathAnimations[selectedPath].iZ;
+            numericUpDownID.Value = pathAnimations[selectedPath].iD;
             numericUpDownSelectedFrame.Value = 1;
-            numericUpDownSelectedFrame.Maximum = pathAnimations[(int)numericUpDownSelectedPath.Value - 1].fr;
-            generateFrameList(pathAnimations[(int)numericUpDownSelectedPath.Value - 1]);
-            updateUI(pathAnimations[(int)numericUpDownSelectedPath.Value - 1].fl);
+            numericUpDownSelectedFrame.Maximum = pathAnimations[selectedPath].fr;
+            generateFrameList(pathAnimations[selectedPath]);
+            updateUI(pathAnimations[selectedPath].fl);
         }
 
         private void numericUpDownSelectedFrame_ValueChanged(object sender, EventArgs e)
         {
-            ec.highlightedFrame = (int)numericUpDownSelectedFrame.Value - 1;
+            selectedFrame = (int)numericUpDownSelectedFrame.Value - 1;
+            ec.highlightedFrame = selectedFrame;
             ec.redraw();
-            updateUI(pathAnimations[(int)numericUpDownSelectedPath.Value - 1].fl);
+            updateUI(pathAnimations[selectedPath].fl);
         }
 
         private void updateUI(int flag)
         {
+            frameChangesAccepted = false;
+
             numericUpDownPX.Value = 0;
             numericUpDownPY.Value = 0;
             numericUpDownPZ.Value = 0;
@@ -254,9 +285,9 @@ namespace NSMB_Worldmap_Editor.Controls
                 numericUpDownPZ.Enabled = false;
                 numericUpDownPD.Enabled = true;
 
-                numericUpDownPX.Value = frameList[(int)numericUpDownSelectedFrame.Value - 1].x;
-                numericUpDownPY.Value = frameList[(int)numericUpDownSelectedFrame.Value - 1].y;
-                numericUpDownPD.Value = frameList[(int)numericUpDownSelectedFrame.Value - 1].d;
+                numericUpDownPX.Value = frameList[selectedFrame].x;
+                numericUpDownPY.Value = frameList[selectedFrame].y;
+                numericUpDownPD.Value = frameList[selectedFrame].d;
 
                 modeComboBox.SelectedIndex = 2;
             }
@@ -273,7 +304,7 @@ namespace NSMB_Worldmap_Editor.Controls
                 numericUpDownPZ.Enabled = false;
                 numericUpDownPD.Enabled = false;
 
-                numericUpDownPY.Value = frameList[(int)numericUpDownSelectedFrame.Value - 1].y;
+                numericUpDownPY.Value = frameList[selectedFrame].y;
 
                 modeComboBox.SelectedIndex = 1;
             }
@@ -290,7 +321,7 @@ namespace NSMB_Worldmap_Editor.Controls
                 numericUpDownPZ.Enabled = false;
                 numericUpDownPD.Enabled = false;
 
-                numericUpDownPX.Value = frameList[(int)numericUpDownSelectedFrame.Value - 1].x;
+                numericUpDownPX.Value = frameList[selectedFrame].x;
 
                 modeComboBox.SelectedIndex = 0;
             }
@@ -307,8 +338,8 @@ namespace NSMB_Worldmap_Editor.Controls
                 numericUpDownPZ.Enabled = true;
                 numericUpDownPD.Enabled = false;
 
-                numericUpDownPZ.Value = frameList[(int)numericUpDownSelectedFrame.Value - 1].z;
-                numericUpDownPY.Value = frameList[(int)numericUpDownSelectedFrame.Value - 1].y;
+                numericUpDownPZ.Value = frameList[selectedFrame].z;
+                numericUpDownPY.Value = frameList[selectedFrame].y;
 
                 modeComboBox.SelectedIndex = 4;
             }
@@ -325,8 +356,8 @@ namespace NSMB_Worldmap_Editor.Controls
                 numericUpDownPZ.Enabled = true;
                 numericUpDownPD.Enabled = false;
 
-                numericUpDownPX.Value = frameList[(int)numericUpDownSelectedFrame.Value - 1].x;
-                numericUpDownPZ.Value = frameList[(int)numericUpDownSelectedFrame.Value - 1].z;
+                numericUpDownPX.Value = frameList[selectedFrame].x;
+                numericUpDownPZ.Value = frameList[selectedFrame].z;
 
                 modeComboBox.SelectedIndex = 3;
             }
@@ -343,10 +374,10 @@ namespace NSMB_Worldmap_Editor.Controls
                 numericUpDownPZ.Enabled = true;
                 numericUpDownPD.Enabled = true;
 
-                numericUpDownPX.Value = frameList[(int)numericUpDownSelectedFrame.Value - 1].x;
-                numericUpDownPY.Value = frameList[(int)numericUpDownSelectedFrame.Value - 1].y;
-                numericUpDownPZ.Value = frameList[(int)numericUpDownSelectedFrame.Value - 1].z;
-                numericUpDownPD.Value = frameList[(int)numericUpDownSelectedFrame.Value - 1].d;
+                numericUpDownPX.Value = frameList[selectedFrame].x;
+                numericUpDownPY.Value = frameList[selectedFrame].y;
+                numericUpDownPZ.Value = frameList[selectedFrame].z;
+                numericUpDownPD.Value = frameList[selectedFrame].d;
 
                 modeComboBox.SelectedIndex = 5;
             }
@@ -363,7 +394,7 @@ namespace NSMB_Worldmap_Editor.Controls
                 numericUpDownPZ.Enabled = false;
                 numericUpDownPD.Enabled = false;
 
-                numericUpDownPY.Value = frameList[(int)numericUpDownSelectedFrame.Value - 1].y;
+                numericUpDownPY.Value = frameList[selectedFrame].y;
 
                 modeComboBox.SelectedIndex = 6;
             }
@@ -380,8 +411,8 @@ namespace NSMB_Worldmap_Editor.Controls
                 numericUpDownPZ.Enabled = true;
                 numericUpDownPD.Enabled = false;
 
-                numericUpDownPX.Value = frameList[(int)numericUpDownSelectedFrame.Value - 1].x;
-                numericUpDownPZ.Value = frameList[(int)numericUpDownSelectedFrame.Value - 1].z;
+                numericUpDownPX.Value = frameList[selectedFrame].x;
+                numericUpDownPZ.Value = frameList[selectedFrame].z;
 
                 modeComboBox.SelectedIndex = 7;
             }
@@ -398,8 +429,8 @@ namespace NSMB_Worldmap_Editor.Controls
                 numericUpDownPZ.Enabled = true;
                 numericUpDownPD.Enabled = false;
 
-                numericUpDownPZ.Value = frameList[(int)numericUpDownSelectedFrame.Value - 1].z;
-                numericUpDownPY.Value = frameList[(int)numericUpDownSelectedFrame.Value - 1].y;
+                numericUpDownPZ.Value = frameList[selectedFrame].z;
+                numericUpDownPY.Value = frameList[selectedFrame].y;
 
                 modeComboBox.SelectedIndex = 8;
             }
@@ -416,9 +447,9 @@ namespace NSMB_Worldmap_Editor.Controls
                 numericUpDownPZ.Enabled = true;
                 numericUpDownPD.Enabled = false;
 
-                numericUpDownPX.Value = frameList[(int)numericUpDownSelectedFrame.Value - 1].x;
-                numericUpDownPY.Value = frameList[(int)numericUpDownSelectedFrame.Value - 1].y;
-                numericUpDownPZ.Value = frameList[(int)numericUpDownSelectedFrame.Value - 1].z;
+                numericUpDownPX.Value = frameList[selectedFrame].x;
+                numericUpDownPY.Value = frameList[selectedFrame].y;
+                numericUpDownPZ.Value = frameList[selectedFrame].z;
 
                 modeComboBox.SelectedIndex = 9;
             }
@@ -437,6 +468,172 @@ namespace NSMB_Worldmap_Editor.Controls
 
                 modeComboBox.SelectedIndex = -1;
             }
+
+            frameChangesAccepted = true;
+        }
+        
+        private void writeFrameList(pathAnimation pA)
+        {
+            BinaryWriter bw = new BinaryWriter(new FileStream("Backup/animationData.tmp", FileMode.Open));
+
+            if (pA.fl == 15152) //303B X
+            {
+                bw.BaseStream.Position = pA.of + pA.pX;
+                for (int i = 0; i < pA.fr; i++)
+                {
+                    bw.Write(calcBackPosition(frameList[i].x));
+                }
+            }
+            
+            else if (pA.fl == 15128) //183B Y
+            {
+                bw.BaseStream.Position = pA.of + pA.pY;
+                for (int i = 0; i < pA.fr; i++)
+                {
+                    bw.Write(calcBackPosition(frameList[i].y));
+                }
+            }
+
+            else if (pA.fl == 15192) //583B Y / no direction at all
+            {
+                bw.BaseStream.Position = pA.of + pA.pY;
+                for (int i = 0; i < pA.fr; i++)
+                {
+                    bw.Write(calcBackPosition(frameList[i].y));
+                }
+            }
+
+
+            else if (pA.fl == 14864) //103A X Y D
+            {
+                bw.BaseStream.Position = pA.of + pA.pX;
+                for (int i = 0; i < pA.fr; i++)
+                {
+                    bw.Write(calcBackPosition(frameList[i].x));
+                }
+
+                bw.BaseStream.Position = pA.of + pA.pY;
+                for (int i = 0; i < pA.fr; i++)
+                {
+                    bw.Write(calcBackPosition(frameList[i].y));
+                }
+
+                bw.BaseStream.Position = pA.of + pA.pD;
+                for (int i = 0; i < pA.fr; i++)
+                {
+                    bw.Write(calcBackPosition(frameList[i].d));
+                }
+            }
+
+            else if (pA.fl == 15112) //083B Y Z
+            {
+                bw.BaseStream.Position = pA.of + pA.pY;
+                for (int i = 0; i < pA.fr; i++)
+                {
+                    bw.Write(calcBackPosition(frameList[i].y));
+                }
+
+                bw.BaseStream.Position = pA.of + pA.pZ;
+                for (int i = 0; i < pA.fr; i++)
+                {
+                    bw.Write(calcBackPosition(frameList[i].z));
+                }
+            }
+
+            else if (pA.fl == 15136) //203B X Z
+            {
+                bw.BaseStream.Position = pA.of + pA.pX;
+                for (int i = 0; i < pA.fr; i++)
+                {
+                    bw.Write(calcBackPosition(frameList[i].x));
+                }
+
+                bw.BaseStream.Position = pA.of + pA.pZ;
+                for (int i = 0; i < pA.fr; i++)
+                {
+                    bw.Write(calcBackPosition(frameList[i].z));
+                }
+            }
+
+            else if (pA.fl == 15200) //603B X Z / no direction at all
+            {
+                bw.BaseStream.Position = pA.of + pA.pX;
+                for (int i = 0; i < pA.fr; i++)
+                {
+                    bw.Write(calcBackPosition(frameList[i].x));
+                }
+
+                bw.BaseStream.Position = pA.of + pA.pZ;
+                for (int i = 0; i < pA.fr; i++)
+                {
+                    bw.Write(calcBackPosition(frameList[i].z));
+                }
+            }
+
+            else if (pA.fl == 14848) //003B X Y Z D
+            {
+                bw.BaseStream.Position = pA.of + pA.pX;
+                for (int i = 0; i < pA.fr; i++)
+                {
+                    bw.Write(calcBackPosition(frameList[i].x));
+                }
+
+                bw.BaseStream.Position = pA.of + pA.pY;
+                for (int i = 0; i < pA.fr; i++)
+                {
+                    bw.Write(calcBackPosition(frameList[i].y));
+                }
+
+                bw.BaseStream.Position = pA.of + pA.pZ;
+                for (int i = 0; i < pA.fr; i++)
+                {
+                    bw.Write(calcBackPosition(frameList[i].z));
+                }
+
+                bw.BaseStream.Position = pA.of + pA.pD;
+                for (int i = 0; i < pA.fr; i++)
+                {
+                    bw.Write(calcBackPosition(frameList[i].d));
+                }
+            }
+
+            else if (pA.fl == 15176) //483B Y Z / no direction at all
+            {
+                bw.BaseStream.Position = pA.of + pA.pY;
+                for (int i = 0; i < pA.fr; i++)
+                {
+                    bw.Write(calcBackPosition(frameList[i].y));
+                }
+
+                bw.BaseStream.Position = pA.of + pA.pZ;
+                for (int i = 0; i < pA.fr; i++)
+                {
+                    bw.Write(calcBackPosition(frameList[i].z));
+                }
+            }
+
+            else if (pA.fl == 15168) //403B X Y Z / no direction at all
+            {
+                bw.BaseStream.Position = pA.of + pA.pX;
+                for (int i = 0; i < pA.fr; i++)
+                {
+                    bw.Write(calcBackPosition(frameList[i].x));
+                }
+
+                bw.BaseStream.Position = pA.of + pA.pY;
+                for (int i = 0; i < pA.fr; i++)
+                {
+                    bw.Write(calcBackPosition(frameList[i].y));
+                }
+
+                bw.BaseStream.Position = pA.of + pA.pZ;
+                for (int i = 0; i < pA.fr; i++)
+                {
+                    bw.Write(calcBackPosition(frameList[i].z));
+                }
+            }
+
+            bw.Close();
         }
 
         private void generateFrameList(pathAnimation pA)
@@ -609,6 +806,28 @@ namespace NSMB_Worldmap_Editor.Controls
 
             ec.frameList = frameList;
             ec.redraw();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            writeFrameList(pathAnimations[selectedPath]);
+            File.Copy("Backup/animationData.tmp", nsbcaPath, true);
+        }
+
+        private void positionAtFrameChanged(object sender, EventArgs e)
+        {
+            if (frameChangesAccepted)
+            {
+                int x = (int)numericUpDownPX.Value;
+                int y = (int)numericUpDownPY.Value;
+                int z = (int)numericUpDownPZ.Value;
+                int d = (int)numericUpDownPD.Value;
+
+                frameList[selectedFrame] = new frame(x, y, z, d);
+
+                ec.frameList = frameList;
+                ec.redraw();
+            }
         }
 
     }

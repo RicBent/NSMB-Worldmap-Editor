@@ -160,6 +160,7 @@ namespace NSMB_Worldmap_Editor
 
             nodeEditor.dataNodeList = dataNodeList[0];
             nodeEditor.Enabled = true;
+            pathEditor.Enabled = true;
 
             updateMenu(true);
         }

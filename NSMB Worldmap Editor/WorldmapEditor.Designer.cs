@@ -176,6 +176,7 @@
             // pathEditor
             // 
             this.pathEditor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pathEditor.Enabled = false;
             this.pathEditor.Location = new System.Drawing.Point(0, 0);
             this.pathEditor.Name = "pathEditor";
             this.pathEditor.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);

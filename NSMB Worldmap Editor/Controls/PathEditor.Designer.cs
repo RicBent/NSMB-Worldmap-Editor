@@ -58,7 +58,7 @@
             this.numericUpDownSelectedPath = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.saveNsbcaButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPZ)).BeginInit();
@@ -222,6 +222,7 @@
             this.numericUpDownPZ.Name = "numericUpDownPZ";
             this.numericUpDownPZ.Size = new System.Drawing.Size(172, 20);
             this.numericUpDownPZ.TabIndex = 5;
+            this.numericUpDownPZ.ValueChanged += new System.EventHandler(this.positionAtFrameChanged);
             // 
             // numericUpDownPD
             // 
@@ -239,6 +240,7 @@
             this.numericUpDownPD.Name = "numericUpDownPD";
             this.numericUpDownPD.Size = new System.Drawing.Size(172, 20);
             this.numericUpDownPD.TabIndex = 5;
+            this.numericUpDownPD.ValueChanged += new System.EventHandler(this.positionAtFrameChanged);
             // 
             // numericUpDownPY
             // 
@@ -256,6 +258,7 @@
             this.numericUpDownPY.Name = "numericUpDownPY";
             this.numericUpDownPY.Size = new System.Drawing.Size(172, 20);
             this.numericUpDownPY.TabIndex = 5;
+            this.numericUpDownPY.ValueChanged += new System.EventHandler(this.positionAtFrameChanged);
             // 
             // numericUpDownPX
             // 
@@ -273,6 +276,7 @@
             this.numericUpDownPX.Name = "numericUpDownPX";
             this.numericUpDownPX.Size = new System.Drawing.Size(172, 20);
             this.numericUpDownPX.TabIndex = 5;
+            this.numericUpDownPX.ValueChanged += new System.EventHandler(this.positionAtFrameChanged);
             // 
             // groupBox1
             // 
@@ -485,22 +489,23 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Selected Path";
             // 
-            // button2
+            // saveNsbcaButton
             // 
-            this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(3, 37);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(244, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Create Path Animations";
-            this.button2.UseVisualStyleBackColor = true;
+            this.saveNsbcaButton.Enabled = false;
+            this.saveNsbcaButton.Location = new System.Drawing.Point(3, 37);
+            this.saveNsbcaButton.Name = "saveNsbcaButton";
+            this.saveNsbcaButton.Size = new System.Drawing.Size(244, 23);
+            this.saveNsbcaButton.TabIndex = 1;
+            this.saveNsbcaButton.Text = "Save Path Animations";
+            this.saveNsbcaButton.UseVisualStyleBackColor = true;
+            this.saveNsbcaButton.Click += new System.EventHandler(this.button2_Click);
             // 
             // PathEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.saveNsbcaButton);
             this.Controls.Add(this.openNsbcaButton);
             this.Name = "PathEditor";
             this.Size = new System.Drawing.Size(250, 500);
@@ -533,7 +538,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown numericUpDownSelectedFrame;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button saveNsbcaButton;
         private System.Windows.Forms.ComboBox modeComboBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox1;
