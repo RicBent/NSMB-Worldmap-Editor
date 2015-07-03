@@ -31,6 +31,8 @@
             this.openNsbcaButton = new System.Windows.Forms.Button();
             this.contentPanel = new System.Windows.Forms.Panel();
             this.groupBoxTools = new System.Windows.Forms.GroupBox();
+            this.replacePathButton = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.insertStraightWalksButton = new System.Windows.Forms.Button();
             this.groupBoxAtFrame = new System.Windows.Forms.GroupBox();
             this.comboBoxPD = new System.Windows.Forms.ComboBox();
@@ -49,7 +51,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.saveNsbcaButton = new System.Windows.Forms.Button();
             this.createNsbcaButton = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.contentPanel.SuspendLayout();
             this.groupBoxTools.SuspendLayout();
             this.groupBoxAtFrame.SuspendLayout();
@@ -89,14 +90,37 @@
             // 
             // groupBoxTools
             // 
+            this.groupBoxTools.Controls.Add(this.replacePathButton);
             this.groupBoxTools.Controls.Add(this.button1);
             this.groupBoxTools.Controls.Add(this.insertStraightWalksButton);
             this.groupBoxTools.Location = new System.Drawing.Point(3, 212);
             this.groupBoxTools.Name = "groupBoxTools";
-            this.groupBoxTools.Size = new System.Drawing.Size(244, 129);
+            this.groupBoxTools.Size = new System.Drawing.Size(244, 105);
             this.groupBoxTools.TabIndex = 7;
             this.groupBoxTools.TabStop = false;
             this.groupBoxTools.Text = "Tools";
+            // 
+            // replacePathButton
+            // 
+            this.replacePathButton.Enabled = false;
+            this.replacePathButton.Location = new System.Drawing.Point(9, 77);
+            this.replacePathButton.Name = "replacePathButton";
+            this.replacePathButton.Size = new System.Drawing.Size(229, 23);
+            this.replacePathButton.TabIndex = 0;
+            this.replacePathButton.Text = "Replace Path with...";
+            this.replacePathButton.UseVisualStyleBackColor = true;
+            this.replacePathButton.Click += new System.EventHandler(this.replacePathButton_Click);
+            // 
+            // button1
+            // 
+            this.button1.Enabled = false;
+            this.button1.Location = new System.Drawing.Point(9, 48);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(229, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Modify Z-Positions";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.insertStraightWalksButton_Click);
             // 
             // insertStraightWalksButton
             // 
@@ -347,16 +371,6 @@
             this.createNsbcaButton.UseVisualStyleBackColor = true;
             this.createNsbcaButton.Click += new System.EventHandler(this.createNsbcaButton_Click);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(9, 48);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(229, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Modify Z-Positions";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.insertStraightWalksButton_Click);
-            // 
             // PathEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -406,6 +420,7 @@
         private System.Windows.Forms.GroupBox groupBoxTools;
         private System.Windows.Forms.Button insertStraightWalksButton;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button replacePathButton;
 
     }
 }

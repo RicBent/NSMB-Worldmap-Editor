@@ -10,24 +10,18 @@ using System.Windows.Forms;
 
 namespace NSMB_Worldmap_Editor
 {
-    public partial class NewAnimationFileDialog : Form
+    public partial class ReplacePathDialog : Form
     {
-        public NewAnimationFileDialog()
+        public ReplacePathDialog()
         {
             InitializeComponent();
             this.CenterToScreen();
-
-            selectedWorld.SelectedIndex = 0;
-
-            createButton.Focus();
+            selectedMethod.SelectedIndex = 0;
         }
 
-        public int worldIndex() { return selectedWorld.SelectedIndex; }
-
-        private void createButton_Click(object sender, EventArgs e)
+        private void replaceButton_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
         }
-
     }
 }

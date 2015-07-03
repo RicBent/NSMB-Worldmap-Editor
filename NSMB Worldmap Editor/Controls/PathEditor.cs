@@ -590,5 +590,15 @@ namespace NSMB_Worldmap_Editor.Controls
                 ec.redraw();
             }
         }
+
+        private void replacePathButton_Click(object sender, EventArgs e)
+        {
+            ReplacePathDialog rpd = new ReplacePathDialog();
+
+            if (rpd.ShowDialog() == DialogResult.OK)
+            {
+                rpd.Close();
+            }
+        }
     }
 }

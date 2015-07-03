@@ -96,6 +96,12 @@
       <DependentUpon>InsertStraightWalkDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="pathAnimation.cs" />
+    <Compile Include="Dialogs\ReplacePathDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ReplacePathDialog.Designer.cs">
+      <DependentUpon>ReplacePathDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="visibleNode.cs" />
     <Compile Include="WorldmapEditor.cs">
       <SubType>Form</SubType>
@@ -119,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\NewAnimationFileDialog.resx">
       <DependentUpon>NewAnimationFileDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\ReplacePathDialog.resx">
+      <DependentUpon>ReplacePathDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WorldmapEditor.resx">
       <DependentUpon>WorldmapEditor.cs</DependentUpon>
