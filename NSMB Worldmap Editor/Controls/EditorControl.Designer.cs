@@ -95,12 +95,12 @@
             this.vScrollBar.TabIndex = 0;
             this.vScrollBar.ValueChanged += new System.EventHandler(this.vScrollBar_ValueChanged);
             // 
-            // Editor2D
+            // EditorControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "Editor2D";
+            this.Name = "EditorControl";
             this.Size = new System.Drawing.Size(764, 644);
             this.SizeChanged += new System.EventHandler(this.Editor2D_SizeChanged);
             this.tableLayoutPanel1.ResumeLayout(false);

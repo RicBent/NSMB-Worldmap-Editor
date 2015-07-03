@@ -29,29 +29,18 @@
         private void InitializeComponent()
         {
             this.openNsbcaButton = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.flagLabel = new System.Windows.Forms.Label();
-            this.numberOfPathsLabel = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.modeComboBox = new System.Windows.Forms.ComboBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.contentPanel = new System.Windows.Forms.Panel();
+            this.groupBoxTools = new System.Windows.Forms.GroupBox();
+            this.insertStraightWalksButton = new System.Windows.Forms.Button();
+            this.groupBoxAtFrame = new System.Windows.Forms.GroupBox();
+            this.comboBoxPD = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.numericUpDownPZ = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDownPD = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownPY = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownPX = new System.Windows.Forms.NumericUpDown();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.numericUpDownID = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDownIZ = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDownIY = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDownIX = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownSelectedFrame = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.numericUpDownFrames = new System.Windows.Forms.NumericUpDown();
@@ -59,17 +48,14 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.saveNsbcaButton = new System.Windows.Forms.Button();
-            this.panel1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.createNsbcaButton = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.contentPanel.SuspendLayout();
+            this.groupBoxTools.SuspendLayout();
+            this.groupBoxAtFrame.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPZ)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPX)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownID)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownIZ)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownIY)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownIX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSelectedFrame)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFrames)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSelectedPath)).BeginInit();
@@ -85,90 +71,74 @@
             this.openNsbcaButton.UseVisualStyleBackColor = true;
             this.openNsbcaButton.Click += new System.EventHandler(this.openNsbcaButton_Click);
             // 
-            // panel1
+            // contentPanel
             // 
-            this.panel1.Controls.Add(this.flagLabel);
-            this.panel1.Controls.Add(this.numberOfPathsLabel);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.modeComboBox);
-            this.panel1.Controls.Add(this.groupBox2);
-            this.panel1.Controls.Add(this.groupBox1);
-            this.panel1.Controls.Add(this.numericUpDownSelectedFrame);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.numericUpDownFrames);
-            this.panel1.Controls.Add(this.numericUpDownSelectedPath);
-            this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(0, 66);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(250, 431);
-            this.panel1.TabIndex = 2;
+            this.contentPanel.Controls.Add(this.groupBoxTools);
+            this.contentPanel.Controls.Add(this.groupBoxAtFrame);
+            this.contentPanel.Controls.Add(this.numericUpDownSelectedFrame);
+            this.contentPanel.Controls.Add(this.label2);
+            this.contentPanel.Controls.Add(this.numericUpDownFrames);
+            this.contentPanel.Controls.Add(this.numericUpDownSelectedPath);
+            this.contentPanel.Controls.Add(this.label7);
+            this.contentPanel.Controls.Add(this.label1);
+            this.contentPanel.Enabled = false;
+            this.contentPanel.Location = new System.Drawing.Point(0, 95);
+            this.contentPanel.Name = "contentPanel";
+            this.contentPanel.Size = new System.Drawing.Size(250, 412);
+            this.contentPanel.TabIndex = 2;
             // 
-            // flagLabel
+            // groupBoxTools
             // 
-            this.flagLabel.AutoSize = true;
-            this.flagLabel.Location = new System.Drawing.Point(9, 385);
-            this.flagLabel.Name = "flagLabel";
-            this.flagLabel.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.flagLabel.Size = new System.Drawing.Size(57, 18);
-            this.flagLabel.TabIndex = 7;
-            this.flagLabel.Text = "Flag: 0000";
+            this.groupBoxTools.Controls.Add(this.button1);
+            this.groupBoxTools.Controls.Add(this.insertStraightWalksButton);
+            this.groupBoxTools.Location = new System.Drawing.Point(3, 212);
+            this.groupBoxTools.Name = "groupBoxTools";
+            this.groupBoxTools.Size = new System.Drawing.Size(244, 129);
+            this.groupBoxTools.TabIndex = 7;
+            this.groupBoxTools.TabStop = false;
+            this.groupBoxTools.Text = "Tools";
             // 
-            // numberOfPathsLabel
+            // insertStraightWalksButton
             // 
-            this.numberOfPathsLabel.AutoSize = true;
-            this.numberOfPathsLabel.Location = new System.Drawing.Point(9, 367);
-            this.numberOfPathsLabel.Name = "numberOfPathsLabel";
-            this.numberOfPathsLabel.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.numberOfPathsLabel.Size = new System.Drawing.Size(98, 18);
-            this.numberOfPathsLabel.TabIndex = 7;
-            this.numberOfPathsLabel.Text = "Number of Paths: 0";
+            this.insertStraightWalksButton.Location = new System.Drawing.Point(9, 19);
+            this.insertStraightWalksButton.Name = "insertStraightWalksButton";
+            this.insertStraightWalksButton.Size = new System.Drawing.Size(229, 23);
+            this.insertStraightWalksButton.TabIndex = 0;
+            this.insertStraightWalksButton.Text = "Insert Straight Walk";
+            this.insertStraightWalksButton.UseVisualStyleBackColor = true;
+            this.insertStraightWalksButton.Click += new System.EventHandler(this.insertStraightWalksButton_Click);
             // 
-            // label3
+            // groupBoxAtFrame
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 83);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(34, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Mode";
+            this.groupBoxAtFrame.Controls.Add(this.comboBoxPD);
+            this.groupBoxAtFrame.Controls.Add(this.label12);
+            this.groupBoxAtFrame.Controls.Add(this.label8);
+            this.groupBoxAtFrame.Controls.Add(this.label9);
+            this.groupBoxAtFrame.Controls.Add(this.label10);
+            this.groupBoxAtFrame.Controls.Add(this.numericUpDownPZ);
+            this.groupBoxAtFrame.Controls.Add(this.numericUpDownPY);
+            this.groupBoxAtFrame.Controls.Add(this.numericUpDownPX);
+            this.groupBoxAtFrame.Location = new System.Drawing.Point(3, 81);
+            this.groupBoxAtFrame.Name = "groupBoxAtFrame";
+            this.groupBoxAtFrame.Size = new System.Drawing.Size(244, 125);
+            this.groupBoxAtFrame.TabIndex = 6;
+            this.groupBoxAtFrame.TabStop = false;
+            this.groupBoxAtFrame.Text = "Position at selected frame";
             // 
-            // modeComboBox
+            // comboBoxPD
             // 
-            this.modeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.modeComboBox.FormattingEnabled = true;
-            this.modeComboBox.Items.AddRange(new object[] {
-            "X Changes",
-            "Y Changes",
-            "X/Y Changes",
-            "X/Z Changes",
-            "Y/Z-Changes",
-            "X/Y/ZChanges",
-            "Y Changes (No Direction)",
-            "X/Y Changes (No Direction)",
-            "Y/Z Changes (No Direction)",
-            "X/Y/Z Changes (No Direction)"});
-            this.modeComboBox.Location = new System.Drawing.Point(61, 80);
-            this.modeComboBox.Name = "modeComboBox";
-            this.modeComboBox.Size = new System.Drawing.Size(186, 21);
-            this.modeComboBox.TabIndex = 3;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.label12);
-            this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Controls.Add(this.label10);
-            this.groupBox2.Controls.Add(this.numericUpDownPZ);
-            this.groupBox2.Controls.Add(this.numericUpDownPD);
-            this.groupBox2.Controls.Add(this.numericUpDownPY);
-            this.groupBox2.Controls.Add(this.numericUpDownPX);
-            this.groupBox2.Location = new System.Drawing.Point(3, 239);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(244, 125);
-            this.groupBox2.TabIndex = 6;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Position at selected frame";
+            this.comboBoxPD.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxPD.FormattingEnabled = true;
+            this.comboBoxPD.Items.AddRange(new object[] {
+            "Right",
+            "Up",
+            "Down",
+            "Left"});
+            this.comboBoxPD.Location = new System.Drawing.Point(66, 96);
+            this.comboBoxPD.Name = "comboBoxPD";
+            this.comboBoxPD.Size = new System.Drawing.Size(172, 21);
+            this.comboBoxPD.TabIndex = 7;
+            this.comboBoxPD.SelectedIndexChanged += new System.EventHandler(this.positionAtFrameChanged);
             // 
             // label12
             // 
@@ -224,24 +194,6 @@
             this.numericUpDownPZ.TabIndex = 5;
             this.numericUpDownPZ.ValueChanged += new System.EventHandler(this.positionAtFrameChanged);
             // 
-            // numericUpDownPD
-            // 
-            this.numericUpDownPD.Location = new System.Drawing.Point(66, 97);
-            this.numericUpDownPD.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.numericUpDownPD.Minimum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            -2147483648});
-            this.numericUpDownPD.Name = "numericUpDownPD";
-            this.numericUpDownPD.Size = new System.Drawing.Size(172, 20);
-            this.numericUpDownPD.TabIndex = 5;
-            this.numericUpDownPD.ValueChanged += new System.EventHandler(this.positionAtFrameChanged);
-            // 
             // numericUpDownPY
             // 
             this.numericUpDownPY.Location = new System.Drawing.Point(66, 45);
@@ -277,127 +229,6 @@
             this.numericUpDownPX.Size = new System.Drawing.Size(172, 20);
             this.numericUpDownPX.TabIndex = 5;
             this.numericUpDownPX.ValueChanged += new System.EventHandler(this.positionAtFrameChanged);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.numericUpDownID);
-            this.groupBox1.Controls.Add(this.numericUpDownIZ);
-            this.groupBox1.Controls.Add(this.numericUpDownIY);
-            this.groupBox1.Controls.Add(this.numericUpDownIX);
-            this.groupBox1.Location = new System.Drawing.Point(3, 108);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(244, 125);
-            this.groupBox1.TabIndex = 6;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Initial Positions";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(6, 99);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(49, 13);
-            this.label11.TabIndex = 6;
-            this.label11.Text = "Direction";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 73);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(54, 13);
-            this.label6.TabIndex = 4;
-            this.label6.Text = "Z-Position";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 47);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(54, 13);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Y-Position";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 21);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(54, 13);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "X-Position";
-            // 
-            // numericUpDownID
-            // 
-            this.numericUpDownID.Location = new System.Drawing.Point(66, 97);
-            this.numericUpDownID.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.numericUpDownID.Minimum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            -2147483648});
-            this.numericUpDownID.Name = "numericUpDownID";
-            this.numericUpDownID.Size = new System.Drawing.Size(172, 20);
-            this.numericUpDownID.TabIndex = 5;
-            // 
-            // numericUpDownIZ
-            // 
-            this.numericUpDownIZ.Location = new System.Drawing.Point(66, 71);
-            this.numericUpDownIZ.Maximum = new decimal(new int[] {
-            2000,
-            0,
-            0,
-            0});
-            this.numericUpDownIZ.Minimum = new decimal(new int[] {
-            2000,
-            0,
-            0,
-            -2147483648});
-            this.numericUpDownIZ.Name = "numericUpDownIZ";
-            this.numericUpDownIZ.Size = new System.Drawing.Size(172, 20);
-            this.numericUpDownIZ.TabIndex = 5;
-            // 
-            // numericUpDownIY
-            // 
-            this.numericUpDownIY.Location = new System.Drawing.Point(66, 45);
-            this.numericUpDownIY.Maximum = new decimal(new int[] {
-            2000,
-            0,
-            0,
-            0});
-            this.numericUpDownIY.Minimum = new decimal(new int[] {
-            2000,
-            0,
-            0,
-            -2147483648});
-            this.numericUpDownIY.Name = "numericUpDownIY";
-            this.numericUpDownIY.Size = new System.Drawing.Size(172, 20);
-            this.numericUpDownIY.TabIndex = 5;
-            // 
-            // numericUpDownIX
-            // 
-            this.numericUpDownIX.Location = new System.Drawing.Point(66, 19);
-            this.numericUpDownIX.Maximum = new decimal(new int[] {
-            2000,
-            0,
-            0,
-            0});
-            this.numericUpDownIX.Minimum = new decimal(new int[] {
-            2000,
-            0,
-            0,
-            -2147483648});
-            this.numericUpDownIX.Name = "numericUpDownIX";
-            this.numericUpDownIX.Size = new System.Drawing.Size(172, 20);
-            this.numericUpDownIX.TabIndex = 5;
             // 
             // numericUpDownSelectedFrame
             // 
@@ -439,6 +270,11 @@
             0,
             0,
             0});
+            this.numericUpDownFrames.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numericUpDownFrames.Name = "numericUpDownFrames";
             this.numericUpDownFrames.Size = new System.Drawing.Size(151, 20);
             this.numericUpDownFrames.TabIndex = 1;
@@ -447,6 +283,7 @@
             0,
             0,
             0});
+            this.numericUpDownFrames.ValueChanged += new System.EventHandler(this.numericUpDownFrames_ValueChanged);
             // 
             // numericUpDownSelectedPath
             // 
@@ -498,31 +335,46 @@
             this.saveNsbcaButton.TabIndex = 1;
             this.saveNsbcaButton.Text = "Save Path Animations";
             this.saveNsbcaButton.UseVisualStyleBackColor = true;
-            this.saveNsbcaButton.Click += new System.EventHandler(this.button2_Click);
+            this.saveNsbcaButton.Click += new System.EventHandler(this.saveNsbcaButton_Click);
+            // 
+            // createNsbcaButton
+            // 
+            this.createNsbcaButton.Location = new System.Drawing.Point(3, 66);
+            this.createNsbcaButton.Name = "createNsbcaButton";
+            this.createNsbcaButton.Size = new System.Drawing.Size(244, 23);
+            this.createNsbcaButton.TabIndex = 1;
+            this.createNsbcaButton.Text = "Create Path Animations";
+            this.createNsbcaButton.UseVisualStyleBackColor = true;
+            this.createNsbcaButton.Click += new System.EventHandler(this.createNsbcaButton_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(9, 48);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(229, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Modify Z-Positions";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.insertStraightWalksButton_Click);
             // 
             // PathEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.contentPanel);
+            this.Controls.Add(this.createNsbcaButton);
             this.Controls.Add(this.saveNsbcaButton);
             this.Controls.Add(this.openNsbcaButton);
             this.Name = "PathEditor";
-            this.Size = new System.Drawing.Size(250, 500);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.Size = new System.Drawing.Size(250, 541);
+            this.contentPanel.ResumeLayout(false);
+            this.contentPanel.PerformLayout();
+            this.groupBoxTools.ResumeLayout(false);
+            this.groupBoxAtFrame.ResumeLayout(false);
+            this.groupBoxAtFrame.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPZ)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPD)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPX)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownID)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownIZ)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownIY)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownIX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSelectedFrame)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFrames)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSelectedPath)).EndInit();
@@ -533,22 +385,13 @@
         #endregion
 
         private System.Windows.Forms.Button openNsbcaButton;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel contentPanel;
         private System.Windows.Forms.NumericUpDown numericUpDownSelectedPath;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown numericUpDownSelectedFrame;
         private System.Windows.Forms.Button saveNsbcaButton;
-        private System.Windows.Forms.ComboBox modeComboBox;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.NumericUpDown numericUpDownIZ;
-        private System.Windows.Forms.NumericUpDown numericUpDownIY;
-        private System.Windows.Forms.NumericUpDown numericUpDownIX;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBoxAtFrame;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
@@ -557,12 +400,12 @@
         private System.Windows.Forms.NumericUpDown numericUpDownPX;
         private System.Windows.Forms.NumericUpDown numericUpDownFrames;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label numberOfPathsLabel;
-        private System.Windows.Forms.Label flagLabel;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.NumericUpDown numericUpDownPD;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.NumericUpDown numericUpDownID;
+        private System.Windows.Forms.Button createNsbcaButton;
+        private System.Windows.Forms.ComboBox comboBoxPD;
+        private System.Windows.Forms.GroupBox groupBoxTools;
+        private System.Windows.Forms.Button insertStraightWalksButton;
+        private System.Windows.Forms.Button button1;
 
     }
 }

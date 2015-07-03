@@ -22,6 +22,7 @@ namespace NSMB_Worldmap_Editor.Controls
         Bitmap nodeImg = ResizeBitmap(Properties.Resources.NormalNode, 36, 36);
 
         public List<frame> frameList;
+
         public int highlightedFrame;
     
         public EditorControl()
@@ -251,13 +252,13 @@ namespace NSMB_Worldmap_Editor.Controls
         }
         #endregion
 
+
         private static Bitmap ResizeBitmap(Bitmap sourceBMP, int width, int height)
         {
             Bitmap result = new Bitmap(width, height);
             using (Graphics g = Graphics.FromImage(result))
                 g.DrawImage(sourceBMP, 0, 0, width, height);
             return result;
-        }
-        
+        }        
     }
 }

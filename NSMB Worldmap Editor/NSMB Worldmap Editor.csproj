@@ -52,6 +52,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -82,6 +83,18 @@
     </Compile>
     <Compile Include="dataNode.cs" />
     <Compile Include="frame.cs" />
+    <Compile Include="Dialogs\NewAnimationFileDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\NewAnimationFileDialog.Designer.cs">
+      <DependentUpon>NewAnimationFileDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\InsertStraightWalkDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\InsertStraightWalkDialog.Designer.cs">
+      <DependentUpon>InsertStraightWalkDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="pathAnimation.cs" />
     <Compile Include="visibleNode.cs" />
     <Compile Include="WorldmapEditor.cs">
@@ -100,6 +113,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\PathEditor.resx">
       <DependentUpon>PathEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\InsertStraightWalkDialog.resx">
+      <DependentUpon>InsertStraightWalkDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\NewAnimationFileDialog.resx">
+      <DependentUpon>NewAnimationFileDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WorldmapEditor.resx">
       <DependentUpon>WorldmapEditor.cs</DependentUpon>
