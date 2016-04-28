@@ -65,7 +65,7 @@ namespace NSMB_Worldmap_Editor.Controls
 
         private void createNsbcaButton_Click(object sender, EventArgs e)
         {
-            int[] pathsPerWorld = { 23, 24, 21, 23, 30, 25, 24, 19 };
+            int[] pathsPerWorld = { 23, 24, 21, 23, 30, 26, 24, 19 };
             NewAnimationFileDialog nsfd = new NewAnimationFileDialog();
             int worldIndex;
             if (nsfd.ShowDialog() == DialogResult.OK)
