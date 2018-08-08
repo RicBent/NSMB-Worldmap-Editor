@@ -1,3 +1,5 @@
+## This editor is obsolete and has been replaced by Goombatlas: https://github.com/RicBent/Goombatlas
+
 # NSMB-Worldmap-Editor
 
 NSMBHD thread:http://nsmbhd.net/thread/3060-nsmb-worldmap-editor/#44015 (Also containing builds of v1.0-1.3)
